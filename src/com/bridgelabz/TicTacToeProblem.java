@@ -43,12 +43,12 @@ public class TicTacToeProblem {
                     line = board[2] + board[4] + board[6];
                     break;
             }
-            //For X winner
+
             if (line.equals("XXX")) {
                 return "X";
             }
 
-            // For O winner
+
             else if (line.equals("OOO")) {
                 return "O";
             }
@@ -103,6 +103,16 @@ public class TicTacToeProblem {
                         "Slot already taken; re-enter slot number:");
             }
 
+        }
+
+        if (winner.equalsIgnoreCase("draw")) {
+            System.out.println(
+                    "It's a draw! Thanks for playing.");
+        }
+        else {
+            System.out.println(
+                    "Congratulations! " + winner
+                            + "'s have won! Thanks for playing.");
         }
     }
 }
