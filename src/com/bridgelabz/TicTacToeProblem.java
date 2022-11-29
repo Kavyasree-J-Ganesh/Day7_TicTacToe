@@ -43,12 +43,12 @@ public class TicTacToeProblem {
                     line = board[2] + board[4] + board[6];
                     break;
             }
-            //For X winner
+
             if (line.equals("XXX")) {
                 return "X";
             }
 
-            // For O winner
+
             else if (line.equals("OOO")) {
                 return "O";
             }
@@ -70,16 +70,20 @@ public class TicTacToeProblem {
         return null;
     }
 
+    static void initgame() {
+        for (int a = 0; a < 9; a++) {
+            board[a] = String.valueOf(a + 1);
+        }
+    }
 
-    public static void main(String[] args) {
+    static void startGame() {
         Scanner in = new Scanner(System.in);
         String winner = null;
         turn = "X";
         System.out.println(
                 "X will play first. Enter a slot number to place X in:");
-        for (int a = 0; a < 9; a++) {
-            board[a] = String.valueOf(a + 1);
-        }
+
+        initgame();
 
         while (winner == null) {
             int numInput = in.nextInt();
@@ -104,5 +108,30 @@ public class TicTacToeProblem {
             }
 
         }
+
+        if (winner.equalsIgnoreCase("draw")) {
+            System.out.println(
+                    "It's a draw! Thanks for playing.");
+        }
+        else {
+            System.out.println(
+                    "Congratulations! " + winner
+                            + "'s have won! Thanks for playing.");
+        }
+
+
     }
+
+
+    public static void main(String[] args) {
+        Scanner in = new Scanner(System.in);
+        startGame();
+        System.out.println("Type YES to continue and NO to stop");
+        String replay = in.nextLine();
+
+        if(replay == "YES") {
+            startGame();
+        }
+    }
+
 }
