@@ -25,7 +25,9 @@ public class TicTacToeProblem {
                 return "draw";
             }
         }
-
+        System.out.println(
+                turn + "'s turn; enter a slot number to place "
+                        + turn + " in:");
 
         return null;
     }
