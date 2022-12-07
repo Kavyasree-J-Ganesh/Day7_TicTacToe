@@ -8,11 +8,13 @@ public class TicTacToeProblem {
     static String turn;
 
     static void printBoard(){
-        for(int i=0;i<board.length;i++) {
-            System.out.println(board[i]);
-        }
-    }
 
+        System.out.println("| " + board[0] + " | " + board[1] + " | " + board[2] + " |");
+
+        System.out.println("| " + board[3] + " | " + board[4] + " | " + board[5] + " |");
+
+        System.out.println("| " + board[6] + " | " + board[7] + " | " + board[8] + " |");
+    }
     static String checkWinner(){
         for (int a = 0; a < 8; a++) {
             String line = null;
@@ -63,30 +65,44 @@ public class TicTacToeProblem {
                 return "draw";
             }
         }
-        System.out.println(
-                turn + "'s turn; enter a slot number to place "
-                        + turn + " in:");
+
+        if(turn == "X"){
+            System.out.println(
+                     "Your turn; enter a slot number to place " + turn + " in:");
+        }
 
         return null;
     }
-
     static void initgame() {
         for (int a = 0; a < 9; a++) {
             board[a] = String.valueOf(a + 1);
         }
     }
-
     static void startGame() {
         Scanner in = new Scanner(System.in);
         String winner = null;
-        turn = "X";
-        System.out.println(
-                "X will play first. Enter a slot number to place X in:");
+        System.out.println("Choose Head or Tail. Enter 1 for Head and 0 for Tail");
+        int choice = in.nextInt();
+
+        int randomCheck = (int) Math.floor(Math.random()*10) % 2;
+
+        if ( choice == randomCheck ) {
+            System.out.println("You won the toss! You can start the game by entering X in any column");
+            turn="X";
+        } else {
+            System.out.println("Computer won the toss! Computer will start the game by entering O in any column");
+            turn="O";
+        }
+
 
         initgame();
-
+        int numInput = 0;
         while (winner == null) {
-            int numInput = in.nextInt();
+            if(turn == "X"){
+                numInput = in.nextInt();
+            } else {
+                numInput = (int) Math.floor(Math.random()*10) % 9 + 1;
+            }
 
             if (board[numInput - 1].equals(
                     String.valueOf(numInput))) {
@@ -96,42 +112,40 @@ public class TicTacToeProblem {
                     turn = "O";
                 }
                 else {
+                    System.out.println("Computer has entered O in " + numInput + "position");
                     turn = "X";
                 }
-
                 printBoard();
                 winner = checkWinner();
             }
             else {
-                System.out.println(
-                        "Slot already taken; re-enter slot number:");
+                if(turn == "X") {
+                    System.out.println("Slot already taken; re-enter slot number:");
+                }
+            }
+        }
+        if (winner.equalsIgnoreCase("draw")) {
+            System.out.println("It's a draw! Thanks for playing.");
+        }
+        else {
+            if ( winner == "X"){
+                System.out.println("Congratulations! You have won! Thanks for playing.");
+            } else {
+                System.out.println("Congratulations! Computer has won! Thanks for playing.");
             }
 
         }
 
-        if (winner.equalsIgnoreCase("draw")) {
-            System.out.println(
-                    "It's a draw! Thanks for playing.");
-        }
-        else {
-            System.out.println(
-                    "Congratulations! " + winner
-                            + "'s have won! Thanks for playing.");
-        }
+        System.out.println("Type 1 to continue and 0 to stop");
+        int replay = in.nextInt();
 
-
+        if(replay == 1) {
+            startGame();
+        }
     }
-
-
     public static void main(String[] args) {
         Scanner in = new Scanner(System.in);
         startGame();
-        System.out.println("Type YES to continue and NO to stop");
-        String replay = in.nextLine();
-
-        if(replay == "YES") {
-            startGame();
-        }
     }
 
 }
