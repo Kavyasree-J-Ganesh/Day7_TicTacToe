@@ -15,6 +15,76 @@ public class TicTacToeProblem {
 
         System.out.println("| " + board[6] + " | " + board[7] + " | " + board[8] + " |");
     }
+
+    static int blockCase(int start, int middle, int end, String line){
+        if(line.equals("XX" + (end+1))){
+            return end+1;
+        } else if(line.equals((start+1)+"XX")){
+            return start+1;
+        } else if(line.equals("X"+ (middle+1)+"X")){
+            return middle+1;
+        }
+
+        return 0;
+    }
+
+    static int blockUser(){
+        for (int a=0; a<8; a++) {
+            String line = null;
+
+            switch (a) {
+                case 0:
+                    line = board[0] + board[1] + board[2];  // sum of value across winning line
+                    if(blockCase(0,1,2,line) !=0){
+                        return blockCase(0,1,2,line);
+                    }
+                    break;
+                case 1:
+                    line = board[3] + board[4] + board[5];
+                    if(blockCase(3,4,5,line) != 0){
+                        return blockCase(3,4,5,line);
+                    }
+                    break;
+                case 2:
+                    line = board[6] + board[7] + board[8];
+                    if(blockCase(6,7,8,line) != 0){
+                        return blockCase(6,7,8,line);
+                    }
+                    break;
+                case 3:
+                    line = board[0] + board[3] + board[6];
+                    if(blockCase(0,3,6,line) != 0){
+                        return blockCase(0,3,6,line);
+                    }
+                    break;
+                case 4:
+                    line = board[1] + board[4] + board[7];
+                    if(blockCase(1,4,7,line) != 0){
+                        return blockCase(1,4,7,line);
+                    }
+                    break;
+                case 5:
+                    line = board[2] + board[5] + board[8];
+                    if(blockCase(2,5,8,line) != 0){
+                        return blockCase(2,5,8,line);
+                    }
+                    break;
+                case 6:
+                    line = board[0] + board[4] + board[8];
+                    if(blockCase(0,4,8,line) != 0){
+                        return blockCase(0,4,8,line);
+                    }
+                    break;
+                case 7:
+                    line = board[2] + board[4] + board[6];
+                    if(blockCase(2,4,6,line) != 0){
+                        return blockCase(2,4,6,line);
+                    }
+                    break;
+            }
+        }
+        return (int) Math.floor(Math.random()*10) % 9 + 1;
+    }
     static String checkWinner(){
         for (int a=0; a<8; a++) {
             String line = null;
@@ -102,7 +172,8 @@ public class TicTacToeProblem {
                 //take one of the available corners
                 numInput = in.nextInt();
             } else {
-                numInput = (int) Math.floor(Math.random()*10) % 9 + 1;  // if computer, generate random value
+                numInput = blockUser();  // if computer, generate random value
+                System.out.println(numInput);
             }
             if (board[numInput - 1].equals(    // to match with array index (numInput - 1)
                     String.valueOf(numInput))) {
@@ -134,6 +205,7 @@ public class TicTacToeProblem {
                 System.out.println("Sorry! Computer has won! Thanks for playing.");
             }
         }
+
     }
     public static void main(String[] args) {
         startGame();
