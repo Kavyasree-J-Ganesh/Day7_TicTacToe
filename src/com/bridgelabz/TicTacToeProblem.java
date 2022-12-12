@@ -96,6 +96,10 @@ public class TicTacToeProblem {
                 //if my Opponent can
                 //win then play to block
                 //it
+                //If neither of us are
+                // winning then My first
+                //choice would be to
+                //take one of the available corners
                 numInput = in.nextInt();
             } else {
                 numInput = (int) Math.floor(Math.random()*10) % 9 + 1;  // if computer, generate random value
@@ -130,7 +134,13 @@ public class TicTacToeProblem {
                 System.out.println("Sorry! Computer has won! Thanks for playing.");
             }
         }
+        System.out.println("Type 1 to continue and 0 to stop");
+        int replay = in.nextInt();
+        System.out.println("hi");
+        if(replay == 1) {
 
+            startGame();
+        }
     }
     public static void main(String[] args) {
         startGame();
