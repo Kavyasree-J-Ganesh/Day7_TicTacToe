@@ -206,6 +206,13 @@ public class TicTacToeProblem {
             }
         }
 
+        System.out.println("Type 1 to continue and 0 to stop");
+        int replay = in.nextInt();
+        System.out.println("hi");
+        if(replay == 1) {
+
+            startGame();
+        }
     }
     public static void main(String[] args) {
         startGame();
