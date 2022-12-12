@@ -205,7 +205,7 @@ public class TicTacToeProblem {
                 System.out.println("Sorry! Computer has won! Thanks for playing.");
             }
         }
-        
+
     }
     public static void main(String[] args) {
         startGame();
