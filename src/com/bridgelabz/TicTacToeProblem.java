@@ -205,6 +205,7 @@ public class TicTacToeProblem {
                 System.out.println("Sorry! Computer has won! Thanks for playing.");
             }
         }
+
         System.out.println("Type 1 to continue and 0 to stop");
         int replay = in.nextInt();
         System.out.println("hi");
